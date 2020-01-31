@@ -6,6 +6,7 @@
 #include <Godot.hpp>
 #include <Node.hpp>
 #include <Node2D.hpp>
+#include <AnimationPlayer.hpp>
 
 namespace godot{
 
@@ -17,9 +18,6 @@ private:
     Node* skin;
 public:
     static void _register_methods();
-
-    Mob();
-    ~Mob();
 
     void _init();
     void _ready();

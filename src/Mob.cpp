@@ -8,10 +8,8 @@ using namespace godot;
 void Mob::_register_methods()
 {
     register_method("_ready", &Mob::_ready);
+    register_method("_process", &Mob::_process);
 }
-
-Mob::Mob() {};
-Mob::~Mob() {};
 
 void Mob::_init()
 {
@@ -22,7 +20,7 @@ void Mob::_init()
 void Mob::_ready()
 {
     // Called when node enters scene tree
-    // loading random skin
+    // Load random skin
     const char* skinIdx = skins[ rand() % 3 ].c_str();
     char path[30];
     snprintf(path, 30, "res://scenes/skins/%s.tscn", skinIdx);
@@ -35,4 +33,5 @@ void Mob::_ready()
 void Mob::_process(float delta)
 {
     // Called every frame
+    
 }
