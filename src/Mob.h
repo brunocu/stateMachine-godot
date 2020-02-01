@@ -4,9 +4,9 @@
 #include <vector>
 
 #include <Godot.hpp>
-#include <Node.hpp>
 #include <Node2D.hpp>
-#include <AnimationPlayer.hpp>
+
+#include "State.h"
 
 namespace godot{
 
@@ -15,7 +15,9 @@ class Mob : public Node2D{
 
 private:
     std::vector<std::string> skins;
-    Node* skin;
+    State* _state;
+public:
+    float speed;
 public:
     static void _register_methods();
 

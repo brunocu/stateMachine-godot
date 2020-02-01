@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\gdlibrary.cpp" />
     <ClCompile Include="..\src\Mob.cpp" />
+    <ClCompile Include="..\src\State.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Mob.h" />

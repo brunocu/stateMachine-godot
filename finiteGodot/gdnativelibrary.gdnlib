@@ -7,8 +7,10 @@ reloadable=true
 
 [entry]
 
+Windows.64="res://bin/windows/VSBuild.dll"
 X11.64="res://bin/x11/libgdLinux.so"
 
 [dependencies]
 
+Windows.64=[  ]
 X11.64=[  ]
