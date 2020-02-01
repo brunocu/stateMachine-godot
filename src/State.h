@@ -10,14 +10,10 @@ namespace godot{
 class State
 {
 private:
-	// private
-	Mob* _master;
 	AnimationPlayer* _player;
-	Vector2 direction;
-	float* _speed;
 public:
-	// public
-	State(Mob* mob, Node* skin);
+	State();
+	State(Node* skin);
 	State* handleUpdate(float delta);
 };
 

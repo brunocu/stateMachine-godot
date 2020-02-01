@@ -1,5 +1,4 @@
 #include "Mob.h"
-#include "State.h"
 
 #include <ResourceLoader.hpp>
 #include <PackedScene.hpp>
@@ -8,7 +7,7 @@ using namespace godot;
 
 void Mob::_register_methods()
 {
-    register_property<Mob, float>("speed", &Mob::speed, 10);
+    register_property<Mob, float>("Speed", &Mob::Speed, 10);
     register_method("_ready", &Mob::_ready);
     register_method("_process", &Mob::_process);
 }
@@ -30,7 +29,7 @@ void Mob::_ready()
     Ref<PackedScene> skinNode = ReLo->load(path);
     Node* skin = skinNode->instance();
     add_child(skin);
-    _state = State(*this, skin);
+    _state = State(skin);
 }
 
 void Mob::_process(float delta)
