@@ -11,7 +11,7 @@ class IdleState : public State
 {
 private:
 	using State::_player;
-	using State::dir;
+	Vector2 dir;
 public:
 	IdleState();
 	IdleState(Node* skin);

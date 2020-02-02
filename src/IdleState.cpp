@@ -16,6 +16,7 @@ IdleState::IdleState(Node* skin):State(skin)
 
 Vector2 IdleState::HandleUpdate(float delta)
 {
-	dir = Vector2(1, 0);
+	dir = Vector2(1, 1);
+	dir.normalize();
 	return dir;
 };

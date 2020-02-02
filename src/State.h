@@ -11,7 +11,6 @@ class State
 {
 protected:
 	AnimationPlayer* _player;
-	Vector2 dir;
 public:
 	State();
 	State(Node* skin);

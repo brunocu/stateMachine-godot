@@ -23,6 +23,8 @@ void Mob::_init()
 void Mob::_ready()
 {
     // Called when node enters scene tree
+    // Get scene properties
+    screen_size = get_viewport_rect().size;
     // Load random skin
     const char* skinIdx = skins[rand() % 3].c_str();
     char path[30];
@@ -31,24 +33,38 @@ void Mob::_ready()
     Ref<PackedScene> skinNode = ReLo->load(path);
     Node* skin = skinNode->instance();
     add_child(skin);
+    // States
     _state = new IdleState(skin);
+    updateFn = &State::HandleUpdate;
 };
 
 void Mob::_process(float delta)
 {
     Vector2 currPos = get_position();
-    // Function pointer
-    // God help me
-    statePtr updateFn = &State::HandleUpdate;
     Vector2 deltaPos = (_state->*updateFn)(delta);
+    Vector2 newPos = currPos + (deltaPos * Speed * delta);
+    newPos = clipPos(newPos);
+    set_position(newPos);
 };
 
-void godot::Mob::set_Speed(float value)
+void Mob::set_Speed(float value)
 {
     Speed = value;
 };
 
-float godot::Mob::get_Speed()
+float Mob::get_Speed()
 {
     return Speed;
+};
+
+Vector2 Mob::clipPos(Vector2 pos)
+{
+    if (pos.x <= 0)
+        return pos.rotated(Math_PI / 2);
+    if (pos.y <= 0)
+        return pos.rotated(Math_PI / 2);
+    if (pos.x >= screen_size.x)
+        return pos.rotated(Math_PI / 2);
+    if (pos.x >= screen_size.y)
+        return pos.rotated(Math_PI / 2);
 };
