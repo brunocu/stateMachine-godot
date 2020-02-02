@@ -32,6 +32,10 @@ window/stretch/aspect="keep"
 
 singletons=[  ]
 
+[logging]
+
+file_logging/enable_file_logging=true
+
 [rendering]
 
 quality/2d/use_pixel_snap=true

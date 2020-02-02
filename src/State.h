@@ -9,12 +9,13 @@ namespace godot{
 
 class State
 {
-private:
+protected:
 	AnimationPlayer* _player;
+	Vector2 dir;
 public:
 	State();
 	State(Node* skin);
-	State* handleUpdate(float delta);
+	Vector2 HandleUpdate(float delta);
 };
 
 }

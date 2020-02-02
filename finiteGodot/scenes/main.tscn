@@ -9,4 +9,4 @@ script = ExtResource( 1 )
 [node name="Mob" parent="." instance=ExtResource( 2 )]
 position = Vector2( 320, 240 )
 z_index = 1
-Speed = null
+Speed = 20.0

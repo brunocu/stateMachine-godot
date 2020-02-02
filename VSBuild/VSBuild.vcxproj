@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\gdlibrary.cpp" />
+    <ClCompile Include="..\src\IdleState.cpp" />
     <ClCompile Include="..\src\Mob.cpp" />
     <ClCompile Include="..\src\State.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\IdleState.h" />
     <ClInclude Include="..\src\Mob.h" />
     <ClInclude Include="..\src\State.h" />
   </ItemGroup>

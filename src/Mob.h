@@ -15,16 +15,19 @@ class Mob : public Node2D{
 
 private:
     std::vector<std::string> skins;
-    State _state;
-    //float Speed;
-public:
+    State* _state;
     float Speed;
+    float time;
+    char buffer[50];
 public:
     static void _register_methods();
 
     void _init();
     void _ready();
     void _process(float delta);
+
+    void set_Speed(float value);
+    float get_Speed();
 };
 
 }

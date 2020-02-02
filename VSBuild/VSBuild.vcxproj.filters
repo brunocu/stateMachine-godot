@@ -24,12 +24,18 @@
     <ClCompile Include="..\src\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\IdleState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Mob.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\IdleState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
