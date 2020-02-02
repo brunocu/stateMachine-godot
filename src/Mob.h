@@ -17,8 +17,7 @@ private:
     std::vector<std::string> skins;
     State* _state;
     float Speed;
-    float time;
-    char buffer[50];
+    typedef Vector2(State::* statePtr)(float);
 public:
     static void _register_methods();
 

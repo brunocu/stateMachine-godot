@@ -16,7 +16,7 @@ public:
 	State();
 	State(Node* skin);
 
-	Vector2 HandleUpdate(float delta);
+	virtual Vector2 HandleUpdate(float delta);
 };
 
 }

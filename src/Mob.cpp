@@ -18,7 +18,6 @@ void Mob::_init()
     // Initialize variables 
     skins = { "Red", "Green", "Blue" };
     Speed = 10;
-    time = 0;
 };
 
 void Mob::_ready()
@@ -35,23 +34,13 @@ void Mob::_ready()
     _state = new IdleState(skin);
 };
 
-Vector2 (State::*updatePtr)(float) = &State::HandleUpdate;
-
 void Mob::_process(float delta)
 {
     Vector2 currPos = get_position();
     // Function pointer
     // God help me
-    Vector2 deltaPos = (_state->*updatePtr)(delta);
-    time += delta;
-    if (time >= 2)
-    {
-        snprintf(buffer, 50, "currPos: %0.2f,%0.2f", currPos.x, currPos.y);
-        Godot::print(buffer);
-        snprintf(buffer, 50, "deltaPos: %0.2f,%0.2f", deltaPos.x, deltaPos.y);
-        Godot::print(buffer);
-        time = 0;
-    }
+    statePtr updateFn = &State::HandleUpdate;
+    Vector2 deltaPos = (_state->*updateFn)(delta);
 };
 
 void godot::Mob::set_Speed(float value)
