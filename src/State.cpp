@@ -20,7 +20,7 @@ Vector2 State::HandleUpdate(float delta)
 {
 	// Standard method
 	// Returns direction of movement (i.e. Unit Vector)
-	// Overriden by particular States ¿?
+	// Overriden by particular States ?
 	dir = Vector2(0, 0);
 	return dir;
 };

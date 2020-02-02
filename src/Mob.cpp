@@ -32,14 +32,17 @@ void Mob::_ready()
     Ref<PackedScene> skinNode = ReLo->load(path);
     Node* skin = skinNode->instance();
     add_child(skin);
-    _state = &IdleState(skin);
+    _state = new IdleState(skin);
 };
+
+Vector2 (State::*updatePtr)(float) = &State::HandleUpdate;
 
 void Mob::_process(float delta)
 {
     Vector2 currPos = get_position();
-    Vector2 deltaPos = _state->HandleUpdate(delta);
-    //set_position(currPos + deltaPos);
+    // Function pointer
+    // God help me
+    Vector2 deltaPos = (_state->*updatePtr)(delta);
     time += delta;
     if (time >= 2)
     {
@@ -60,5 +63,3 @@ float godot::Mob::get_Speed()
 {
     return Speed;
 };
-
-
