@@ -15,6 +15,7 @@ protected:
 public:
 	State();
 	State(Node* skin);
+
 	Vector2 HandleUpdate(float delta);
 };
 
