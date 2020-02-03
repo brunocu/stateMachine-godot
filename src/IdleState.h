@@ -5,13 +5,15 @@
 
 #include "State.h"
 
-namespace godot {
+namespace godot
+{
 
 class IdleState : public State
 {
 private:
 	using State::_player;
-	Vector2 dir;
+	using State::dir;
+
 public:
 	IdleState();
 	IdleState(Node* skin);
