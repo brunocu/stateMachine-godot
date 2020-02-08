@@ -3,6 +3,7 @@
 
 #include <Godot.hpp>
 #include <Node.hpp>
+#include <Sprite.hpp>
 #include <AnimationPlayer.hpp>
 
 namespace godot
@@ -11,6 +12,7 @@ namespace godot
 class State
 {
 protected:
+	Sprite* _sprite;
 	AnimationPlayer* _player;
 	Vector2 dir;
 

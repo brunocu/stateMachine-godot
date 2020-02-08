@@ -9,6 +9,9 @@ State::State()
 
 State::State(Node* skin)
 {
+	//get sprite
+	Node* sprite = skin->get_child(0);
+	_sprite = Node::cast_to<Sprite>(sprite);
 	// get animation player
 	Node* player = skin->get_child(2);
 	_player = Node::cast_to<AnimationPlayer>(player);
