@@ -5,7 +5,6 @@ using namespace godot;
 IdleState::IdleState():State()
 {
 	dir = Vector2();
-	Godot::print("Initialized default IdleState");
 }
 
 IdleState::IdleState(Node* skin):State(skin)
@@ -19,5 +18,6 @@ IdleState::IdleState(Node* skin):State(skin)
 
 Vector2 IdleState::HandleUpdate(float delta)
 {
+	_sprite->set_flip_h( dir.x >= 0 );
 	return dir;
 }

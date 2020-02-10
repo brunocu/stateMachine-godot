@@ -5,6 +5,7 @@
 #include <Node.hpp>
 #include <Sprite.hpp>
 #include <AnimationPlayer.hpp>
+#include <RandomNumberGenerator.hpp>
 
 namespace godot
 {
@@ -14,6 +15,7 @@ class State
 protected:
 	Sprite* _sprite;
 	AnimationPlayer* _player;
+	RandomNumberGenerator* _rng;
 	Vector2 dir;
 
 public:

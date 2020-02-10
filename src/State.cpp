@@ -4,11 +4,16 @@ using namespace godot;
 
 State::State()
 {
+	// This constructor shouldn't be called
+	_sprite = NULL;
 	_player = NULL;
+	_rng = NULL;
 }
 
 State::State(Node* skin)
 {
+	// Initialize rng
+	_rng = RandomNumberGenerator::_new();
 	//get sprite
 	Node* sprite = skin->get_child(0);
 	_sprite = Node::cast_to<Sprite>(sprite);
