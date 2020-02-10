@@ -3,6 +3,7 @@
 
 #include <ResourceLoader.hpp>
 #include <PackedScene.hpp>
+#include <RandomNumberGenerator.hpp>
 
 using namespace godot;
 
@@ -23,12 +24,11 @@ void Mob::_init()
 void Mob::_ready()
 {
     // Called when node enters scene tree
+    RandomNumberGenerator* rng = RandomNumberGenerator::_new();
     // Get scene properties
     screen_size = get_viewport_rect().size;
-    snprintf(buffer, 50, "Screen dimensions: %0.2f, %0.2f", screen_size.x, screen_size.y);
-    Godot::print(buffer);
     // Load random skin
-    const char* skinIdx = skins[rand() % 3].c_str();
+    const char* skinIdx = skins[rng->randi() % 3].c_str();
     char path[30];
     snprintf(path, 30, "res://scenes/skins/%s.tscn", skinIdx);
     ResourceLoader* ReLo = ResourceLoader::get_singleton();

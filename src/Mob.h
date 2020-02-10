@@ -21,7 +21,6 @@ private:
     std::vector<std::string> skins;
     float Speed;
     Vector2 screen_size;
-    char buffer[50];
 
 private:
     State* _state;
