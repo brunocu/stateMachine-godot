@@ -12,6 +12,7 @@ void Mob::_register_methods()
     register_property<Mob, float>("Speed", &Mob::set_Speed, &Mob::get_Speed, 50.0);
     register_method("_ready", &Mob::_ready);
     register_method("_process", &Mob::_process);
+    register_method("_on_Sight_area_entered", &Mob::_on_Sight_area_entered);
 }
 
 void Mob::_init()
@@ -29,8 +30,8 @@ void Mob::_ready()
     screen_size = get_viewport_rect().size;
     // Load random skin
     const char* skinIdx = skins[rng->randi() % 3].c_str();
-    char path[30];
-    snprintf(path, 30, "res://scenes/skins/%s.tscn", skinIdx);
+    char path[50];
+    sprintf(path, "res://scenes/skins/%s.tscn", skinIdx);
     ResourceLoader* ReLo = ResourceLoader::get_singleton();
     Ref<PackedScene> skinNode = ReLo->load(path);
     Node* skin = skinNode->instance();
@@ -38,6 +39,7 @@ void Mob::_ready()
     // States
     _state = new IdleState(skin);
     updateFn = &State::HandleUpdate;
+    signalFn = &State::collisionSignal;
 }
 
 void Mob::_process(float delta)
@@ -54,6 +56,15 @@ void Mob::_process(float delta)
     if (newPos.y + 10 >= screen_size.y)
         _state->reflect(Vector2(0,-1));
     set_position(newPos);
+}
+
+void Mob::_on_Sight_area_entered(Variant area)
+{
+    Node2D* node = Object::cast_to<Node2D>(area.operator Object*());
+    State* state = (_state->*signalFn)(node);
+    if (state != NULL) {
+        _state = state;
+    }
 }
 
 void Mob::set_Speed(float value)

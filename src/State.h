@@ -2,7 +2,6 @@
 #define STATE_H
 
 #include <Godot.hpp>
-#include <Node.hpp>
 #include <Sprite.hpp>
 #include <AnimationPlayer.hpp>
 #include <RandomNumberGenerator.hpp>
@@ -21,10 +20,12 @@ protected:
 public:
 	State();
 	State(Node* skin);
+	~State();
 
 	void reflect(Vector2 normal);
 
 	virtual Vector2 HandleUpdate(float delta);
+	virtual State* collisionSignal(Node2D* node);
 };
 
 }

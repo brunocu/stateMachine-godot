@@ -38,3 +38,13 @@ Vector2 IdleState::HandleUpdate(float delta)
 	_sprite->set_flip_h( dir.x >= 0 );
 	return dir;
 }
+
+State* IdleState::collisionSignal(Node2D* node)
+{
+	Vector2 dis = _sprite->get_global_position() - node->get_global_position();
+	if (dis == Vector2())
+		return NULL;
+	else
+		// change to Seek
+	return NULL;
+}

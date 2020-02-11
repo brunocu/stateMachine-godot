@@ -4,7 +4,8 @@
 #include <vector>
 
 #include <Godot.hpp>
-#include <Node2D.hpp>
+#include <Area2D.hpp>
+#include <Variant.hpp>
 
 #include "State.h"
 
@@ -12,6 +13,7 @@ namespace godot
 {
 
 typedef Vector2 (State::*floatFn)(float);
+typedef State* (State::*notePtrFn)(Node2D*);
 
 class Mob : public Node2D
 {
@@ -25,6 +27,7 @@ private:
 private:
     State* _state;
     floatFn updateFn;
+    notePtrFn signalFn;
 
 public:
     static void _register_methods();
@@ -32,6 +35,7 @@ public:
     void _init();
     void _ready();
     void _process(float delta);
+    void _on_Sight_area_entered(Variant area);
 
     void set_Speed(float value);
     float get_Speed();

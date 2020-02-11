@@ -22,6 +22,8 @@ public:
 	IdleState(Node* skin);
 
 	Vector2 HandleUpdate(float delta);
+
+	State* collisionSignal(Node2D* node);
 };
 
 }
