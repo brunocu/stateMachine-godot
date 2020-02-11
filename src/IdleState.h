@@ -14,7 +14,7 @@ private:
 	using State::_sprite;
 	using State::_player;
 	using State::_rng;
-	using State::dir;
+	using State::_dir;
 	float wanderAngle;
 
 public:

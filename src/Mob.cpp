@@ -31,7 +31,7 @@ void Mob::_ready()
     // Load random skin
     const char* skinIdx = skins[rng->randi() % 3].c_str();
     char path[50];
-    sprintf(path, "res://scenes/skins/%s.tscn", skinIdx);
+    sprintf_s(path, "res://scenes/skins/%s.tscn", skinIdx);
     ResourceLoader* ReLo = ResourceLoader::get_singleton();
     Ref<PackedScene> skinNode = ReLo->load(path);
     Node* skin = skinNode->instance();

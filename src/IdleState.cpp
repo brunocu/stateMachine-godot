@@ -8,7 +8,7 @@ using namespace godot;
 
 IdleState::IdleState():State()
 {
-	dir = Vector2();
+	_dir = Vector2();
 	wanderAngle = 0;
 }
 
@@ -16,10 +16,10 @@ IdleState::IdleState(Node* skin):State(skin)
 {
 	_player->play("walk");
 	
-	dir = Vector2(1, 0);
+	_dir = Vector2(1, 0);
 	float rndAngle = _rng->randi() / (RAND_MAX / (2.0 * Math_PI));
-	dir.set_rotation(rndAngle);
-	dir.normalize();
+	_dir.set_rotation(rndAngle);
+	_dir.normalize();
 
 	wanderAngle = (_rng->randi()/RAND_MAX * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5);
 	Godot::print("Initialized IdleState");
@@ -29,14 +29,14 @@ Vector2 IdleState::HandleUpdate(float delta)
 {
 	// Wander Algorithm based on
 	// https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-wander--gamedev-1624
-	Vector2 circleCenter = dir * CIRCLE_DISTANCE;
+	Vector2 circleCenter = _dir * CIRCLE_DISTANCE;
 	Vector2 displacement = Vector2(0,-1) * CIRCLE_RADIUS;
 	displacement.set_rotation(wanderAngle);
 	wanderAngle += ( (_rng->randi()/RAND_MAX) * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5);
 	Vector2 wanderForce = circleCenter + displacement;
-	dir.set_rotation(wanderForce.angle());
-	_sprite->set_flip_h( dir.x >= 0 );
-	return dir;
+	_dir.set_rotation(wanderForce.angle());
+	_sprite->set_flip_h( _dir.x >= 0 );
+	return _dir;
 }
 
 State* IdleState::collisionSignal(Node2D* node)

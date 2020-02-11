@@ -15,7 +15,7 @@ protected:
 	Sprite* _sprite;
 	AnimationPlayer* _player;
 	RandomNumberGenerator* _rng;
-	Vector2 dir;
+	Vector2 _dir;
 
 public:
 	State();

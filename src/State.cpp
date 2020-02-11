@@ -32,7 +32,7 @@ State::~State()
 
 void State::reflect(Vector2 normal)
 {
-	dir = dir - 2.0 * dir.dot(normal) * normal;
+	_dir = _dir - 2.0 * _dir.dot(normal) * normal;
 }
 
 Vector2 State::HandleUpdate(float delta)
