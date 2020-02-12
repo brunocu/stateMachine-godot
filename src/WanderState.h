@@ -1,5 +1,5 @@
-#ifndef IDLESTATE_H
-#define IDLESTATE_H
+#ifndef WANDERSTATE_H
+#define WANDERSTATE_H
 
 #include <Godot.hpp>
 
@@ -8,7 +8,7 @@
 namespace godot
 {
 
-class IdleState : public State
+class WanderState : public State
 {
 private:
 	using State::_sprite;
@@ -19,8 +19,8 @@ private:
 	float wanderAngle;
 
 public:
-	IdleState();
-	IdleState(Node* skin);
+	WanderState();
+	WanderState(Node* skin);
 
 	Vector2 HandleUpdate(float delta);
 

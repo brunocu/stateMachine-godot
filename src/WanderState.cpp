@@ -1,4 +1,4 @@
-#include "IdleState.h"
+#include "WanderState.h"
 
 const float CIRCLE_DISTANCE = 25. / 4;
 const float CIRCLE_RADIUS = 1;
@@ -6,15 +6,15 @@ const float ANGLE_CHANGE = Math_PI / 2;
 
 using namespace godot;
 
-IdleState::IdleState():State()
+WanderState::WanderState():State()
 {
 	_dir = Vector2();
 	wanderAngle = 0;
 }
 
-IdleState::IdleState(Node* skin):State(skin)
+WanderState::WanderState(Node* skin):State(skin)
 {
-	currState = StateList::IdleState;
+	currState = StateList::WanderState;
 	_player->play("walk");
 	
 	_dir = Vector2(1, 0);
@@ -23,10 +23,10 @@ IdleState::IdleState(Node* skin):State(skin)
 	_dir.normalize();
 
 	wanderAngle = (_rng->randi()/RAND_MAX * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5);
-	Godot::print("Initialized IdleState");
+	Godot::print("Initialized WanderState");
 }
 
-Vector2 IdleState::HandleUpdate(float delta)
+Vector2 WanderState::HandleUpdate(float delta)
 {
 	// Wander Algorithm based on
 	// https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-wander--gamedev-1624
@@ -39,7 +39,7 @@ Vector2 IdleState::HandleUpdate(float delta)
 	return _dir;
 }
 
-StateList IdleState::collisionSignal(Node2D* node)
+StateList WanderState::collisionSignal(Node2D* node)
 {
 	Vector2 dis = _sprite->get_global_position() - node->get_global_position();
 	if (dis == Vector2())

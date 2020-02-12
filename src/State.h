@@ -11,7 +11,7 @@ namespace godot
 
 enum class StateList {
 	Invalid,
-	IdleState,
+	WanderState,
 	SeekState
 };
 
@@ -21,8 +21,8 @@ protected:
 	Sprite* _sprite;
 	AnimationPlayer* _player;
 	RandomNumberGenerator* _rng;
+	Node2D* _target;
 	Vector2 _dir;
-	Vector2 _target;
 	StateList currState;
 
 public:
@@ -35,8 +35,8 @@ public:
 	virtual Vector2 HandleUpdate(float delta);
 	virtual StateList collisionSignal(Node2D* node);
 
-	void set_target(Vector2 target);
-	Vector2 get_target();
+	void set_target(Node2D* target);
+	Node2D* get_target();
 	StateList get_state();
 };
 

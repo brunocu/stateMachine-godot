@@ -27,7 +27,7 @@ private:
 private:
     State* _state;
     floatFn updateFn;
-    nodePtrFn signalFn;
+    nodePtrFn colFn;
 
 public:
     static void _register_methods();

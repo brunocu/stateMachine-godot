@@ -31,6 +31,7 @@ State::~State()
 	delete _sprite;
 	delete _player;
 	delete _rng;
+	delete _target;
 }
 
 void State::reflect(Vector2 normal)
@@ -56,7 +57,7 @@ void State::set_target(Vector2 target)
 	_target = target;
 }
 
-Vector2 State::get_target()
+Node2D* State::get_target()
 {
 	return _target;
 }

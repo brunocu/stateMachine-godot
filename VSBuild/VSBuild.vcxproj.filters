@@ -24,10 +24,10 @@
     <ClCompile Include="..\src\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\IdleState.cpp">
+    <ClCompile Include="..\src\SeekState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SeekState.cpp">
+    <ClCompile Include="..\src\WanderState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClInclude Include="..\src\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\IdleState.h">
+    <ClInclude Include="..\src\SeekState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\SeekState.h">
+    <ClInclude Include="..\src\WanderState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

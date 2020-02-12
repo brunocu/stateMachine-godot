@@ -1,5 +1,5 @@
 #include "Mob.h"
-#include "IdleState.h"
+#include "WanderState.h"
 #include "SeekState.h"
 
 #include <ResourceLoader.hpp>
@@ -38,9 +38,9 @@ void Mob::_ready()
     Node* skin = skinNode->instance();
     add_child(skin);
     // States
-    _state = new IdleState(skin);
+    _state = new WanderState(skin);
     updateFn = &State::HandleUpdate;
-    signalFn = &State::collisionSignal;
+    colFn = &State::collisionSignal;
 }
 
 void Mob::_process(float delta)
@@ -67,11 +67,11 @@ void Mob::_process(float delta)
 void Mob::_on_Food_sighted(Variant area)
 {
     Node2D* node = Object::cast_to<Node2D>(area.operator Object*());
-    StateList state = (_state->*signalFn)(node);
+    StateList state = (_state->*colFn)(node);
     if (state != _state->get_state())
     {
         _state = stateInit(state);
-        _state->set_target(node->get_global_position());
+        _state->set_target(node);
     }
 }
 
@@ -91,8 +91,8 @@ State* Mob::stateInit(StateList state)
     State* newState{};
     switch (state)
     {
-    case StateList::IdleState:
-        newState = new IdleState(skin);
+    case StateList::WanderState:
+        newState = new WanderState(skin);
         break;
 
     case StateList::SeekState:
