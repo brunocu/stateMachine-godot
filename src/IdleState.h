@@ -15,6 +15,7 @@ private:
 	using State::_player;
 	using State::_rng;
 	using State::_dir;
+	using State::currState;
 	float wanderAngle;
 
 public:
@@ -23,7 +24,7 @@ public:
 
 	Vector2 HandleUpdate(float delta);
 
-	State* collisionSignal(Node2D* node);
+	StateList collisionSignal(Node2D* node);
 };
 
 }

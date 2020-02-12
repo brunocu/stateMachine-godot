@@ -9,6 +9,12 @@
 namespace godot
 {
 
+enum class StateList {
+	Invalid,
+	IdleState,
+	SeekState
+};
+
 class State
 {
 protected:
@@ -16,6 +22,8 @@ protected:
 	AnimationPlayer* _player;
 	RandomNumberGenerator* _rng;
 	Vector2 _dir;
+	Vector2 _target;
+	StateList currState;
 
 public:
 	State();
@@ -25,7 +33,11 @@ public:
 	void reflect(Vector2 normal);
 
 	virtual Vector2 HandleUpdate(float delta);
-	virtual State* collisionSignal(Node2D* node);
+	virtual StateList collisionSignal(Node2D* node);
+
+	void set_target(Vector2 target);
+	Vector2 get_target();
+	StateList get_state();
 };
 
 }

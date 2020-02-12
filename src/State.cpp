@@ -21,6 +21,8 @@ State::State(Node* skin)
 	Node* player = skin->get_child(2);
 	_player = Node::cast_to<AnimationPlayer>(player);
 	Godot::print("Base initialized");
+	// Don't use base State
+	currState = StateList::Invalid;
 }
 
 State::~State()
@@ -43,7 +45,22 @@ Vector2 State::HandleUpdate(float delta)
 	return Vector2();
 }
 
-State* State::collisionSignal(Node2D* node)
+StateList State::collisionSignal(Node2D* node)
 {
-	return NULL;
+	return currState;
+}
+
+void State::set_target(Vector2 target)
+{
+	_target = target;
+}
+
+Vector2 State::get_target()
+{
+	return _target;
+}
+
+StateList State::get_state()
+{
+	return currState;
 }

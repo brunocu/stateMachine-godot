@@ -14,6 +14,7 @@ IdleState::IdleState():State()
 
 IdleState::IdleState(Node* skin):State(skin)
 {
+	currState = StateList::IdleState;
 	_player->play("walk");
 	
 	_dir = Vector2(1, 0);
@@ -35,16 +36,14 @@ Vector2 IdleState::HandleUpdate(float delta)
 	wanderAngle += ( (_rng->randi()/RAND_MAX) * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5);
 	Vector2 wanderForce = circleCenter + displacement;
 	_dir.set_rotation(wanderForce.angle());
-	_sprite->set_flip_h( _dir.x >= 0 );
 	return _dir;
 }
 
-State* IdleState::collisionSignal(Node2D* node)
+StateList IdleState::collisionSignal(Node2D* node)
 {
 	Vector2 dis = _sprite->get_global_position() - node->get_global_position();
 	if (dis == Vector2())
-		return NULL;
+		return currState;
 	else
-		// change to Seek
-	return NULL;
+		return StateList::SeekState;
 }

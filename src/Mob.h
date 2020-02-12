@@ -13,7 +13,7 @@ namespace godot
 {
 
 typedef Vector2 (State::*floatFn)(float);
-typedef State* (State::*notePtrFn)(Node2D*);
+typedef StateList (State::*nodePtrFn)(Node2D*);
 
 class Mob : public Node2D
 {
@@ -27,7 +27,7 @@ private:
 private:
     State* _state;
     floatFn updateFn;
-    notePtrFn signalFn;
+    nodePtrFn signalFn;
 
 public:
     static void _register_methods();
@@ -39,6 +39,8 @@ public:
 
     void set_Speed(float value);
     float get_Speed();
+
+    State* stateInit(StateList state);
 };
 
 }

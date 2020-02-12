@@ -14,11 +14,11 @@ class SeekState : public State
 private:
 	using State::_sprite;
 	using State::_player;
-	using State::_dir;
-	Vector2 target;
+	using State::_target;
 
 public:
-	SeekState(Sprite* sprite, AnimationPlayer* player, Vector2 dir);
+	using State::State;
+	SeekState(Node* skin);
 
 	Vector2 HandleUpdate(float delta);
 };

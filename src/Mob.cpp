@@ -1,5 +1,6 @@
 #include "Mob.h"
 #include "IdleState.h"
+#include "SeekState.h"
 
 #include <ResourceLoader.hpp>
 #include <PackedScene.hpp>
@@ -31,7 +32,7 @@ void Mob::_ready()
     // Load random skin
     const char* skinIdx = skins[rng->randi() % 3].c_str();
     char path[50];
-    sprintf_s(path, "res://scenes/skins/%s.tscn", skinIdx);
+    sprintf(path, "res://scenes/skins/%s.tscn", skinIdx);
     ResourceLoader* ReLo = ResourceLoader::get_singleton();
     Ref<PackedScene> skinNode = ReLo->load(path);
     Node* skin = skinNode->instance();
@@ -56,14 +57,21 @@ void Mob::_process(float delta)
     if (newPos.y + 10 >= screen_size.y)
         _state->reflect(Vector2(0,-1));
     set_position(newPos);
+    // flip sprite
+    Node* spriteN = get_child(1)->get_child(0);
+	Sprite* sprite = Node::cast_to<Sprite>(spriteN);
+    if (dir.x != 0)
+        sprite->set_flip_h( dir.x > 0 );
 }
 
 void Mob::_on_Sight_area_entered(Variant area)
 {
     Node2D* node = Object::cast_to<Node2D>(area.operator Object*());
-    State* state = (_state->*signalFn)(node);
-    if (state != NULL) {
-        _state = state;
+    StateList state = (_state->*signalFn)(node);
+    if (state != _state->get_state())
+    {
+        _state = stateInit(state);
+        _state->set_target(node->get_global_position());
     }
 }
 
@@ -75,4 +83,21 @@ void Mob::set_Speed(float value)
 float Mob::get_Speed()
 {
     return Speed;
+}
+
+State* Mob::stateInit(StateList state)
+{
+    Node* skin = get_child(1);
+    State* newState;
+    switch (state)
+    {
+    case StateList::IdleState:
+        newState = new IdleState(skin);
+        break;
+
+    case StateList::SeekState:
+        newState = new SeekState(skin);
+        break;
+    }
+    return newState;
 }
