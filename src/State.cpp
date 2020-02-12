@@ -5,6 +5,7 @@ using namespace godot;
 State::State()
 {
 	// This constructor shouldn't be called
+	currState = StateList::Invalid;
 	_sprite = NULL;
 	_player = NULL;
 	_rng = NULL;
@@ -18,7 +19,7 @@ State::State(Node* skin)
 	Node* sprite = skin->get_child(0);
 	_sprite = Node::cast_to<Sprite>(sprite);
 	// get animation player
-	Node* player = skin->get_child(2);
+	Node* player = skin->get_child(1);
 	_player = Node::cast_to<AnimationPlayer>(player);
 	Godot::print("Base initialized");
 	// Don't use base State

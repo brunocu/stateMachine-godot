@@ -35,7 +35,7 @@ public:
     void _init();
     void _ready();
     void _process(float delta);
-    void _on_Sight_area_entered(Variant area);
+    void _on_Food_sighted(Variant area);
 
     void set_Speed(float value);
     float get_Speed();
