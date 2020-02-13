@@ -20,7 +20,9 @@ public:
 	using State::State;
 	SeekState(Node* skin);
 
-	Vector2 HandleUpdate(float delta);
+	Vector2 handleUpdate(float delta);
+
+	StateList hitboxEnter(Node2D* target);
 };
 }
 

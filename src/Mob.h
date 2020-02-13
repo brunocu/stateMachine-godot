@@ -28,6 +28,8 @@ private:
     State* _state;
     floatFn updateFn;
     nodePtrFn colFn;
+    nodePtrFn henterFn;
+    nodePtrFn hexitFn;
 
 public:
     static void _register_methods();
@@ -36,6 +38,8 @@ public:
     void _ready();
     void _process(float delta);
     void _on_Food_sighted(Variant area);
+    void _on_Hitbox_touch(Variant area);
+    void _on_Hitbox_exit(Variant area);
 
     void set_Speed(float value);
     float get_Speed();

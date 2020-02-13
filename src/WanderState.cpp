@@ -8,7 +8,7 @@ using namespace godot;
 
 WanderState::WanderState():State()
 {
-	_dir = Vector2();
+	_dir = ZERO;
 	wanderAngle = 0;
 }
 
@@ -26,7 +26,7 @@ WanderState::WanderState(Node* skin):State(skin)
 	Godot::print("Initialized WanderState");
 }
 
-Vector2 WanderState::HandleUpdate(float delta)
+Vector2 WanderState::handleUpdate(float delta)
 {
 	// Wander Algorithm based on
 	// https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-wander--gamedev-1624
@@ -42,7 +42,7 @@ Vector2 WanderState::HandleUpdate(float delta)
 StateList WanderState::collisionSignal(Node2D* node)
 {
 	Vector2 dis = _sprite->get_global_position() - node->get_global_position();
-	if (dis == Vector2())
+	if (dis == ZERO)
 		return currState;
 	else
 		return StateList::SeekState;

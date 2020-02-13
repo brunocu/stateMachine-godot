@@ -1,6 +1,7 @@
 #include "Mob.h"
 #include "WanderState.h"
 #include "SeekState.h"
+#include "EatState.h"
 
 #include <ResourceLoader.hpp>
 #include <PackedScene.hpp>
@@ -14,6 +15,8 @@ void Mob::_register_methods()
     register_method("_ready", &Mob::_ready);
     register_method("_process", &Mob::_process);
     register_method("_on_Food_sighted", &Mob::_on_Food_sighted);
+    register_method("_on_Hitbox_touch", &Mob::_on_Hitbox_touch);
+    register_method("_on_Hitbox_exit", &Mob::_on_Hitbox_exit);
 }
 
 void Mob::_init()
@@ -39,8 +42,10 @@ void Mob::_ready()
     add_child(skin);
     // States
     _state = new WanderState(skin);
-    updateFn = &State::HandleUpdate;
+    updateFn = &State::handleUpdate;
     colFn = &State::collisionSignal;
+    henterFn = &State::hitboxEnter;
+    hexitFn = &State::hitboxLeft;
 }
 
 void Mob::_process(float delta)
@@ -61,13 +66,35 @@ void Mob::_process(float delta)
     Node* spriteN = get_child(2)->get_child(0);
 	Sprite* sprite = Node::cast_to<Sprite>(spriteN);
     if (dir.x != 0)
-        sprite->set_flip_h( dir.x > 0 );
+        sprite->set_flip_h(dir.x > 0);
 }
 
 void Mob::_on_Food_sighted(Variant area)
 {
     Node2D* node = Object::cast_to<Node2D>(area.operator Object*());
     StateList state = (_state->*colFn)(node);
+    if (state != _state->get_state())
+    {
+        _state = stateInit(state);
+        _state->set_target(node);
+    }
+}
+
+void Mob::_on_Hitbox_touch(Variant area)
+{
+    Node2D* node = Object::cast_to<Node2D>(area.operator Object * ());
+    StateList state = (_state->*henterFn)(node);
+    if (state != _state->get_state())
+    {
+        _state = stateInit(state);
+        _state->set_target(node);
+    }
+}
+
+void Mob::_on_Hitbox_exit(Variant area)
+{
+    Node2D* node = Object::cast_to<Node2D>(area.operator Object * ());
+    StateList state = (_state->*hexitFn)(node);
     if (state != _state->get_state())
     {
         _state = stateInit(state);
@@ -97,6 +124,9 @@ State* Mob::stateInit(StateList state)
 
     case StateList::SeekState:
         newState = new SeekState(skin);
+        break;
+    case StateList::EatState:
+        newState = new EatState(skin);
         break;
     }
     return newState;

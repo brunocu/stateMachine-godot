@@ -22,7 +22,7 @@ public:
 	WanderState();
 	WanderState(Node* skin);
 
-	Vector2 HandleUpdate(float delta);
+	Vector2 handleUpdate(float delta);
 
 	StateList collisionSignal(Node2D* node);
 };
