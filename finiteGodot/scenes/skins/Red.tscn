@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/transparent_enemy.png" type="Texture" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "attack"
 loop = true
 tracks/0/type = "value"
@@ -21,7 +18,7 @@ tracks/0/keys = {
 "values": [ 26, 28, 25 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "blink"
 length = 0.3
 tracks/0/type = "value"
@@ -37,7 +34,7 @@ tracks/0/keys = {
 "values": [ 26, 25 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "eating"
 loop = true
 tracks/0/type = "value"
@@ -53,7 +50,7 @@ tracks/0/keys = {
 "values": [ 25, 26, 27, 26, 25 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "walk"
 length = 0.6
 loop = true
@@ -70,7 +67,7 @@ tracks/0/keys = {
 "values": [ 33, 34, 35, 36, 37, 38 ]
 }
 
-[node name="Blue" type="Area2D"]
+[node name="Red" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2.5, 2.5 )
@@ -78,15 +75,9 @@ texture = ExtResource( 1 )
 vframes = 8
 hframes = 8
 frame = 25
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attack = SubResource( 2 )
-anims/blink = SubResource( 3 )
-anims/eating = SubResource( 4 )
-anims/walk = SubResource( 5 )
+anims/attack = SubResource( 1 )
+anims/blink = SubResource( 2 )
+anims/eating = SubResource( 3 )
+anims/walk = SubResource( 4 )

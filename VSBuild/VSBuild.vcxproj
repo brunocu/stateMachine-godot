@@ -19,14 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\EatState.cpp" />
     <ClCompile Include="..\src\gdlibrary.cpp" />
-    <ClCompile Include="..\src\IdleState.cpp" />
+    <ClCompile Include="..\src\WanderState.cpp" />
     <ClCompile Include="..\src\Mob.cpp" />
+    <ClCompile Include="..\src\SeekState.cpp" />
     <ClCompile Include="..\src\State.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\IdleState.h" />
+    <ClInclude Include="..\src\EatState.h" />
+    <ClInclude Include="..\src\WanderState.h" />
     <ClInclude Include="..\src\Mob.h" />
+    <ClInclude Include="..\src\SeekState.h" />
     <ClInclude Include="..\src\State.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
